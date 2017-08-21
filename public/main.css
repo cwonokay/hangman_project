@@ -1,0 +1,29 @@
+*{
+
+font-size: 35px;
+align-items: center;
+text-shadow: 4px 6px 6px white;
+}
+
+.container{
+  background-image: url("../image/b.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+ height: 100vh;
+
+
+}
+p{
+  display: flex;
+  justify-content: center;
+}
+form{
+  display: flex;
+  justify-content: center;
+}
+
+li{
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+}
