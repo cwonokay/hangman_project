@@ -20,15 +20,15 @@ randomWord.forEach(function (dash) {
   underscore.push("_")
 })
 function reset() {
-  let targetWord  = words[Math.floor(Math.random()*words.length)];
-  let lettersGuessed = [];
-  let maxLives   = 8;
-  let messages = [];
-  let obj;
-  let underscore = [];
-  let no;
-  let randomWord  = targetWord.split("");
-  let wrongLetters = [];
+  targetWord  = words[Math.floor(Math.random()*words.length)];
+  lettersGuessed = [];
+  maxLives   = 8;
+  messages = [];
+  obj;
+  underscore = [];
+  no;
+  randomWord  = targetWord.split("");
+  wrongLetters = [];
 
   randomWord.forEach(function (score) {
     underscore.push("_");
@@ -80,24 +80,18 @@ let guessed = false;
       lettersGuessed: lettersGuessed
 
 };
-if (!matching) {
-  maxLives--;
-  res.redirect("/")
-};
 
-// if (!matching) {
-//   maxLives =0;
-//   res.redirect("/loser")
-// };
+
 
 for (var i = 0; i < randomWord.length; i++) {
  let corretLetter = randomWord[i];
- if (corretLetter === req.body.guess) {
-     underscore[i] = randomWord[i];
-     matching = true;
- }
+   if (corretLetter === req.body.guess) {
+       underscore[i] = randomWord[i];
+       matching = true;
+   }
 
  }
+
 
  for (var i = 0; i < wrongLetters.length; i++) {
    if (wrongLetters[i] === req.body.guess) {
@@ -106,13 +100,30 @@ for (var i = 0; i < randomWord.length; i++) {
      res.redirect("/");
    }
  }
+
+
+  if (!matching) {
+    maxLives--;
+    if (maxLives === 0) {
+      res.redirect("/loser")
+    } else{
+      res.redirect("/")
+    }
+  };
+
+
  if(req.body.guess){
    wrongLetters.push(req.body.guess);
  };
 
+ if ( underscore.toString() === randomWord.toString() ) {
+   res.redirect("/winner");
+ }
+ console.log("this is underscore " + underscore.toString());
+
+ console.log("this the randomWord " + randomWord.toString());
+
 });
-
-
 
 
 router.post("/loser", function (req, res) {
